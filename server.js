@@ -21,8 +21,8 @@ const client = redis.createClient('redis://5.135.156.184:6379');
 client.on('connect', () => {
   console.log('redis connected');
 });
-
-fastify.listen(80, (err) => {
+const port = process.env.PORT || 8080;
+fastify.listen(port, (err) => {
   if (err) throw err;
   console.log(`server listening on ${fastify.server.address().port}`);
 });
