@@ -10,7 +10,8 @@
     "lint": "eslint server.js ./controller ./db ./models ./service"
   },
   "engines": {
-    "node": "8.9.1"
+    "node": "8.9.1",
+    "npm": "6.0.1"
   },
   "repository": {
     "type": "git",
