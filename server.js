@@ -22,7 +22,7 @@ client.on('connect', () => {
   console.log('redis connected');
 });
 
-fastify.listen(4000, (err) => {
+fastify.listen(80, (err) => {
   if (err) throw err;
   console.log(`server listening on ${fastify.server.address().port}`);
 });
