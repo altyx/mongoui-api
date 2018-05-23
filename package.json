@@ -1,0 +1,51 @@
+{
+  "name": "mongoui-api",
+  "version": "1.0.0",
+  "description": "API for mongoDB web interface",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "commit-wizard",
+    "lint": "eslint server.js ./controller ./db ./models ./service"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/altyx/mongoui-api.git"
+  },
+  "keywords": [
+    "API",
+    "node",
+    "fastify",
+    "UI",
+    "interface"
+  ],
+  "author": "Altyx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/altyx/mongoui-api/issues"
+  },
+  "homepage": "https://github.com/altyx/mongoui-api#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "fastify": "^1.5.0",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^5.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "pre-git": "^3.17.1"
+  },
+  "release": {
+    "analyzeCommits": "simple-commit-message"
+  },
+  "config": {
+    "pre-git": {
+      "pre-commit": ["npm run lint"],
+      "pre-push": [
+        "npm run lint"
+      ]
+    }
+  }
+}
