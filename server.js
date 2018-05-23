@@ -24,6 +24,8 @@ client.on('connect', () => {
 const port = process.env.PORT || 8080;
 fastify.listen(port, (err) => {
   if (err) {
+    console.log('error log:', err);
+    console.log('fastify server log:', fastify.server.address());
     client.set('task', err, (error) => {
       throw error;
     });
