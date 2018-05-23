@@ -4,9 +4,13 @@
   "description": "API for mongoDB web interface",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "commit-wizard",
     "lint": "eslint server.js ./controller ./db ./models ./service"
+  },
+  "engines": {
+    "node": "8.9.1"
   },
   "repository": {
     "type": "git",
