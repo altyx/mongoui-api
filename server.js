@@ -16,6 +16,9 @@ fastify.get('/signin', async (req, res) => {
   res.code(200).send('helloWorld');
 });
 
+fastify.get('/', async (req, res) => {
+  res.code(200).send('helloworld/');
+});
 const client = redis.createClient('redis://5.135.156.184:6379');
 
 client.on('connect', () => {
