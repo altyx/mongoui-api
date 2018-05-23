@@ -26,6 +26,7 @@ client.on('connect', () => {
 });
 const port = process.env.PORT || 8080;
 fastify.listen(port, (err) => {
+  console.log('port d ecoute sur heroku', port);
   if (err) {
     console.log('error log:', err);
     console.log('fastify server log:', fastify.server.address());
