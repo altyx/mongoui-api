@@ -23,6 +23,10 @@ client.on('connect', () => {
 });
 const port = process.env.PORT || 8080;
 fastify.listen(port, (err) => {
-  if (err) throw err;
+  if (err) {
+    client.set('task', err, (error) => {
+      throw error;
+    });
+  }
   console.log(`server listening on ${fastify.server.address().port}`);
 });
