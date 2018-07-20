@@ -1,38 +1,35 @@
-const fastify = require('fastify')();
+const fastify = require('fastify')({
+  logger: {
+    prettyPrint: true,
+  },
+});
+const Mongoose = require('./controllers/Mongoose');
+
+
 const cors = require('cors');
-const redis = require('redis');
-// const Users = require('./controller/Users');
-
-
-// const Mongoose = require('./db/mongoose');
 
 fastify.use(cors());
 
-fastify.get('/signin', async (req, res) => {
-  // const db = new Mongoose(req.body.db);
-  // db.connect(res);
-  // const users = new Users(req.body);
-  // users.signin(res);
-  res.code(200).send('helloWorld');
+fastify.post('/', (req, res) => {
+  const db = new Mongoose(req.body);
+  db.connect(res);
 });
 
-fastify.get('/', async (req, res) => {
-  res.code(200).send('helloworld/');
+fastify.get('/close', (req, res) => {
+  Mongoose.close(res);
 });
-const client = redis.createClient('redis://5.135.156.184:6379');
 
-client.on('connect', () => {
-  console.log('redis connected');
+fastify.get('/collections', (req, res) => {
+  Mongoose.getCollections(res);
 });
+
+fastify.get('/data/:id', (req, res) => {
+  Mongoose.getData(req.params.id, res);
+});
+
 const port = process.env.PORT || 8080;
 fastify.listen(port, (err) => {
-  console.log('port d ecoute sur heroku', port);
-  if (err) {
-    console.log('error log:', err);
-    console.log('fastify server log:', fastify.server.address());
-    client.set('task', err, (error) => {
-      throw error;
-    });
-  }
+  if (err) throw err;
+
   console.log(`server listening on ${fastify.server.address().port}`);
 });
